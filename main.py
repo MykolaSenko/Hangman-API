@@ -2,13 +2,17 @@ from fastapi import FastAPI
 from utils.game import Hangman
 
 
-app = FastAPI()
+app = FastAPI()  # Create an instance of the FastAPI class
 
 
 hangman = Hangman()  # Create an instance of the Hangman class
 
+
 @app.get('/')
 def get_description():
+    """
+    Create an get request with information about game
+    """
     return {
         "description": "The Hangman game is a simple game where one player tries to guess an English word, "
                        "taking turns suggesting letters. In this implementation, the man being hanged is not drawn. "
@@ -18,9 +22,13 @@ def get_description():
                        "Vichte, 03.08.2023"
     }
 
+
 @app.post('/hangman/start')
 async def start_new_game():
-    # Reset the Hangman instance to start a new game
+    """
+    Creat a post request which reset the Hangman instance to start a new game
+
+    """
     hangman.__init__()
 
     game_state = {
@@ -34,8 +42,13 @@ async def start_new_game():
 
     return game_state
 
+
 @app.post('/hangman/guess/{letter}')
 async def make_move(letter: str):
+    """
+    Create a post request which allows to input letters, checks if the letter is in the word, post information about the guessed letters and letters which were not guessed, shows information about the end of a game 
+    """
+
     # Ensure the letter is a single lowercase alphabet
     if not letter.isalpha() or len(letter) > 1:
         return {"error": "Please enter a single letter."}
@@ -48,13 +61,13 @@ async def make_move(letter: str):
             "message": "Well done! You won!",
             "correct_word": hangman.word_to_find
         }
-        
+
     elif hangman.lives <= 0:
         result = {
             "message": "Game over! You have no more lives!",
             "correct_word": hangman.word_to_find
         }
-        
+
     else:
         result = {
             "correctly_guessed_letters": hangman.correctly_guessed_letters,

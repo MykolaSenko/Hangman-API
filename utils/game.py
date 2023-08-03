@@ -1,7 +1,7 @@
 from wonderwords import RandomWord
 
-class Hangman:
-    def __init__(self):
+class Hangman: # Create Hangman class
+    def __init__(self):    # Create class instances
         r = RandomWord()
         self.word_to_find = r.word()
         self.correctly_guessed_letters = ['_'] * len(self.word_to_find)
@@ -11,6 +11,9 @@ class Hangman:
         self.error_count = 0
 
     def play(self, players_letter):
+        """
+        Allows to input letters, checks if the letter is in the word, counts correctly guessed letters, wrongly guessed letters, lives, turns, errors.
+        """
         self.turn_count += 1
 
         if players_letter in self.word_to_find:
