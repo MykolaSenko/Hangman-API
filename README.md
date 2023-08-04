@@ -19,6 +19,6 @@ If you guess the word correctly, you will see a congratulatory message. If not, 
 The project was made by Junior AI & Data Scientist Mykola Senko [LinkedIn](https://www.linkedin.com/in/mykola-senko-683510a4/) | [GitHub](https://github.com/MykolaSenko)
 
 # License
-This project is under GPL License which allows to make modification to the code and use it for commercial purposes.
+This project is under [GNU General Piblic License](./LICENSE) which allows to make modification to the code and use it for commercial purposes.
 
 Vichte, August 3, 2023.
